@@ -6,8 +6,8 @@
 
 #### Asynchronous
 
-1. POST `/accounts` -> `jobID`
-2. GET `/jobs/${jobID}` -> `(status, address)`
+1. POST `/accounts` -> `Job`
+2. GET `/jobs/${Job.id}` -> `(status, address)`
 3. Repeat until `status == "Complete"`
 4. GET `/accounts/${address}` -> `Account`
 
@@ -19,14 +19,28 @@
 
 #### Asynchronous
 
-1. POST `/transactions` -> `jobID`
-2. GET `/jobs/${jobID}` -> `(status, txID)`
+1. POST `/transactions` -> `Job`
+2. GET `/jobs/${Job.id}` -> `(status, txID)`
 3. Repeat until `status == "Complete"`
 4. GET `/transactions/${txID}` -> `Transaction`
 
 #### Synchronous
 
 1. POST `/transactions` -> `Transaction`
+
+### Models
+
+#### Job
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "result": "ADDRESS|TXID",
+  "status": "PENDING",
+  "createdAt": "10-06-26 02:31:29",
+  "updatedAt": "10-06-26 02:31:29"
+}
+```
 
 ## Proposed design
 
